@@ -1,0 +1,286 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUSIP Validator Pro - Financial Security Identifier Validation</title>
+    <meta name="description" content="Professional CUSIP validation tool with real-time verification, batch processing, and comprehensive analytics">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔍</text></svg>">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-animation">
+        <div class="bg-animation__item"></div>
+        <div class="bg-animation__item"></div>
+        <div class="bg-animation__item"></div>
+        <div class="bg-animation__item"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header__content">
+                <div class="logo">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>CUSIP Validator Pro</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav__btn active" data-view="single">
+                        <i class="fas fa-search"></i> Single Check
+                    </button>
+                    <button class="nav__btn" data-view="batch">
+                        <i class="fas fa-layer-group"></i> Batch Process
+                    </button>
+                    <button class="nav__btn" data-view="analytics">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </button>
+                </nav>
+                <div class="header__stats">
+                    <div class="stat">
+                        <span class="stat__value" id="totalChecks">0</span>
+                        <span class="stat__label">Total Checks</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Single CUSIP Validation View -->
+            <section class="view active" id="singleView">
+                <div class="validation-card">
+                    <div class="card__header">
+                        <h2><i class="fas fa-search"></i> Single CUSIP Validation</h2>
+                        <div class="real-time-indicator">
+                            <span class="pulse"></span>
+                            Real-time Validation
+                        </div>
+                    </div>
+                    
+                    <div class="validation-form">
+                        <div class="input-group">
+                            <div class="input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="cusipInput" 
+                                    class="cusip-input" 
+                                    placeholder="Enter 9-digit CUSIP (e.g., 037833100)"
+                                    maxlength="9"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                >
+                                <div class="input-icon">
+                                    <i class="fas fa-barcode"></i>
+                                </div>
+                                <button class="clear-btn" id="clearInput">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <button class="validate-btn" id="validateBtn">
+                                <i class="fas fa-check-circle"></i>
+                                Validate
+                            </button>
+                        </div>
+                        
+                        <div class="input-hints">
+                            <div class="hint">
+                                <i class="fas fa-info-circle"></i>
+                                CUSIP format: 9 alphanumeric characters
+                            </div>
+                            <div class="hint">
+                                <i class="fas fa-lightbulb"></i>
+                                Examples: 037833100 (Apple), 17275R102 (Cisco)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="result-panel" id="resultPanel">
+                        <div class="result-placeholder">
+                            <i class="fas fa-keyboard"></i>
+                            <p>Enter a CUSIP above to validate</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Examples -->
+                <div class="examples-card">
+                    <h3><i class="fas fa-star"></i> Quick Examples</h3>
+                    <div class="examples-grid">
+                        <button class="example-btn" data-cusip="037833100">
+                            <span class="example-name">Apple Inc.</span>
+                            <span class="example-code">037833100</span>
+                        </button>
+                        <button class="example-btn" data-cusip="17275R102">
+                            <span class="example-name">Cisco Systems</span>
+                            <span class="example-code">17275R102</span>
+                        </button>
+                        <button class="example-btn" data-cusip="38259P508">
+                            <span class="example-name">Google Inc.</span>
+                            <span class="example-code">38259P508</span>
+                        </button>
+                        <button class="example-btn" data-cusip="68389X105">
+                            <span class="example-name">Oracle Corp.</span>
+                            <span class="example-code">68389X105</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Batch Processing View -->
+            <section class="view" id="batchView">
+                <div class="batch-card">
+                    <div class="card__header">
+                        <h2><i class="fas fa-layer-group"></i> Batch CUSIP Processing</h2>
+                        <div class="batch-actions">
+                            <button class="btn btn--secondary" id="loadSample">
+                                <i class="fas fa-file-import"></i> Load Sample
+                            </button>
+                            <button class="btn btn--primary" id="processBatch">
+                                <i class="fas fa-play"></i> Process All
+                            </button>
+                            <button class="btn btn--success" id="exportResults">
+                                <i class="fas fa-download"></i> Export CSV
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="batch-interface">
+                        <div class="batch-input">
+                            <textarea 
+                                id="batchInput" 
+                                class="batch-textarea" 
+                                placeholder="Enter multiple CUSIPs (one per line)&#10;&#10;Example:&#10;037833100&#10;17275R102&#10;38259P508&#10;68389X105"
+                            ></textarea>
+                            <div class="batch-stats">
+                                <span class="batch-count">0 CUSIPs entered</span>
+                                <span class="batch-limit">Max: 1000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="batch-results">
+                            <div class="batch-header">
+                                <h3>Validation Results</h3>
+                                <div class="batch-summary" id="batchSummary">
+                                    <span class="summary-item valid">
+                                        <i class="fas fa-check"></i>
+                                        <span class="count">0</span>
+                                    </span>
+                                    <span class="summary-item invalid">
+                                        <i class="fas fa-times"></i>
+                                        <span class="count">0</span>
+                                    </span>
+                                    <span class="summary-item pending">
+                                        <i class="fas fa-clock"></i>
+                                        <span class="count">0</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="batch-list" id="batchResults">
+                                <div class="empty-state">
+                                    <i class="fas fa-inbox"></i>
+                                    <p>No results yet. Process some CUSIPs to see results here.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Analytics View -->
+            <section class="view" id="analyticsView">
+                <div class="analytics-grid">
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-tachometer-alt"></i> Performance Metrics</h3>
+                        <div class="metrics">
+                            <div class="metric">
+                                <div class="metric__value" id="avgValidationTime">0.0ms</div>
+                                <div class="metric__label">Avg Validation Time</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric__value" id="totalValid">0</div>
+                                <div class="metric__label">Total Valid</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric__value" id="totalInvalid">0</div>
+                                <div class="metric__label">Total Invalid</div>
+                            </div>
+                            <div class="metric">
+                                <div class="metric__value" id="successRate">0%</div>
+                                <div class="metric__label">Success Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-chart-pie"></i> Validation Distribution</h3>
+                        <div class="chart-container">
+                            <canvas id="distributionChart"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        <div class="activity-log" id="activityLog">
+                            <div class="empty-state">
+                                <i class="fas fa-chart-line"></i>
+                                <p>No validation activity yet</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="analytics-card">
+                        <h3><i class="fas fa-clock"></i> Validation Timeline</h3>
+                        <div class="chart-container">
+                            <canvas id="timelineChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__section">
+                    <h4>About CUSIP</h4>
+                    <p>A CUSIP is a nine-character alphanumeric code that identifies a North American financial security for clearing and settlement of trades.</p>
+                </div>
+                <div class="footer__section">
+                    <h4>Validation Algorithm</h4>
+                    <p>Uses checksum validation with weighted character values and position-based multiplication for accuracy.</p>
+                </div>
+                <div class="footer__section">
+                    <h4>Features</h4>
+                    <ul>
+                        <li>Real-time validation</li>
+                        <li>Batch processing</li>
+                        <li>Comprehensive analytics</li>
+                        <li>Export capabilities</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2024 CUSIP Validator Pro. Advanced financial security validation tool.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
