@@ -1,8 +1,3 @@
-/**
- * CUSIP Validator Pro - Fixed Button Functionality
- * Corrects event listener issues and ensures proper DOM loading
- */
-
 class CUSIPValidator {
   constructor() {
     this.validationHistory = this.loadHistory();
