@@ -40,7 +40,7 @@
 ## 🛠 Technical Architecture
 
 ### **Frontend Technologies**
-```javascript
+
 // Core Technologies
 - HTML5 + CSS3 + JavaScript (ES6+)
 - CSS Grid & Flexbox for layout
@@ -51,7 +51,7 @@
 ``
 
 ### **Advanced JavaScript Features**
-```javascript
+
 // ES6+ Features Used
 - Classes and OOP principles
 - Async/await for asynchronous operations
@@ -63,7 +63,7 @@
 ``
 
 ### **Performance Techniques**
-```javascript
+
 // Optimization Strategies
 - Event delegation for dynamic content
 - Debouncing for input validation
@@ -74,7 +74,7 @@
 ``
 
 ## 📁 Project Structure
-``
+
 cusip-validator-pro/
 │
 ├── index.html              # Main HTML structure
@@ -87,7 +87,7 @@ cusip-validator-pro/
 └── assets/
     ├── screenshots/        # App screenshots
     └── demo/              # Demo files
-``
+
 
 ## 🚀 Installation & Setup
 
@@ -97,7 +97,7 @@ cusip-validator-pro/
 3. No additional setup required!
 
 ### **Option 2: Local Development**
-```bash
+bash
 # Clone the repository
 git clone https://github.com/JCaesar45/cusip-validator-pro.git
 
@@ -111,7 +111,7 @@ xdg-open index.html # Linux
 ``
 
 ### **Option 3: Production Deployment**
-```bash
+bash
 # Serve with any static file server
 # Example using Python
 python -m http.server 8000
@@ -148,7 +148,6 @@ npx serve .
 ## 🔧 CUSIP Validation Algorithm
 
 ### **Algorithm Implementation**
-```javascript
 /**
  * CUSIP Checksum Validation Algorithm
  * 
@@ -168,7 +167,6 @@ npx serve .
 ``
 
 ### **Example Validation**
-```javascript
 // CUSIP: 037833100 (Apple Inc.)
 // Position: 123456789
 // 
@@ -206,7 +204,6 @@ npx serve .
 ## 🎨 Design System
 
 ### **Color Palette**
-```css
 :root {
   --primary-color: #2563eb;      /* Professional blue */
   --success-color: #10b981;      /* Validation green */
@@ -219,13 +216,11 @@ npx serve .
 ``
 
 ### **Typography**
-```css
 font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 font-weight: 300|400|500|600|700;
 ``
 
 ### **Spacing System**
-```css
 --spacing-xs: 0.5rem;    /* 8px */
 --spacing-sm: 1rem;      /* 16px */
 --spacing-md: 1.5rem;    /* 24px */
@@ -246,7 +241,6 @@ font-weight: 300|400|500|600|700;
 - [ ] Toast notifications appear correctly
 
 ### **Test Data**
-```javascript
 // Valid CUSIPs
 const validCUSIPs = [
   '037833100', // Apple Inc.
@@ -321,7 +315,6 @@ const invalidCUSIPs = [
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```markdown
 MIT License
 
 Copyright (c) 2024 CUSIP Validator Pro
@@ -366,7 +359,6 @@ SOFTWARE.
 
 **⭐ If you found this project helpful, please give it a star on GitHub! ⭐**
 
-```markdown
 <!-- GitHub Repository Stats -->
 ![GitHub stars](https://img.shields.io/github/stars/JCaesar45/cusip-validator-pro?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/JCaesar45/cusip-validator-pro?style=social)
