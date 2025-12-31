@@ -1,4 +1,3 @@
-```
 # CUSIP Validator Pro - Advanced Financial Security Validation Tool
 
 ## 🎯 Project Overview
